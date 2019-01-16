@@ -1,18 +1,22 @@
 [
     {
-        "name" : "any_name",
-        "cno" : "+91 9557122807"
+        "item": "Burger",
+        "price": "20.0",
+        "ico": "https://static.thenounproject.com/png/153732-200.png"
     },
     {
-        "name" : "someone",
-        "cno" : "+91 9876543210"
+        "item": "Pizza",
+        "price": "40.0",
+        "ico": "https://cdn1.iconfinder.com/data/icons/universal-mobile-line-icons-vol-9/48/432-512.png"
     },
     {
-        "name" : "no one",
-        "cno" : "+91 9635451536"
+        "item": "Fries",
+        "price": "10.0",
+        "ico": "https://cdn0.iconfinder.com/data/icons/lineo-food/100/french_fries-512.png"
     },
     {
-        "name" : "snmy",
-        "cno" : "+91 9656454565"
+        "item": "Coke",
+        "price": "20.0",
+        "ico": "https://cdn1.iconfinder.com/data/icons/bottle-glyph/100/bottle-glyph1-41-512.png"
     }
 ]

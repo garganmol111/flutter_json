@@ -21,20 +21,6 @@ class HomePage extends StatefulWidget {
 }
  
 class HomePageState extends State<HomePage> {
-  String _filePath;
-  void getFilePath() async {
-    try {
-        String filePath = await FilePicker.getFilePath(type: FileType.ANY);
-        if (filePath == '') {
-          return;
-        }
-        print("File path: " + filePath);
-        setState((){this._filePath = filePath;});
-    } on PlatformException catch (e) {
-        print("Error while picking the file: " + e.toString());
-      }
-    }
-
   List data;
   @override
   Widget build(BuildContext context) {
@@ -42,15 +28,10 @@ class HomePageState extends State<HomePage> {
       appBar: new AppBar(
         title: new Text("Contacts"),
       ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: getFilePath,
-        tooltip: "Select file",
-        child: new Icon(Icons.sd_storage),
-      ),
       body: new Container( 
         child: new Center(
           child: new FutureBuilder(
-            future: DefaultAssetBundle.of(context).loadString(_filePath),
+            future: DefaultAssetBundle.of(context).loadString("load_json/person.json"),
             builder: (context, snapshot) {
               //Decode Json
               var mydata = jsonDecode(snapshot.data.toString());
@@ -61,8 +42,17 @@ class HomePageState extends State<HomePage> {
                     child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget> [ 
-                        new Text("Name: "+mydata[index]['name']),
-                        new Text("Contact no.: "+mydata[index]['cno']),
+                        new FlatButton(
+                          onPressed: () => {},
+                          child: new ConstrainedBox(
+                            constraints: new BoxConstraints.tightFor(),
+                            child: Row(children: <Widget>[
+                              new Image.network(mydata[index]["ico"], height: 30.0, width: 30.0 ),
+                              new Text(mydata[index]["item"]+" : "+mydata[index]["price"])
+                            ],)
+                          )
+                          
+                        )
                       ]
                     ) 
                   );
