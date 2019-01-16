@@ -22,9 +22,18 @@ class HomePage extends StatefulWidget {
  
 class HomePageState extends State<HomePage> {
   List data;
+  String item;
+
+  final GlobalKey<ScaffoldState> mScaffoldState = new GlobalKey<ScaffoldState>();
+  void buttonClick(String item) {
+    final snackBar = new SnackBar(content: new Text("You selected: "+item));
+    mScaffoldState.currentState.showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      key: mScaffoldState,
       appBar: new AppBar(
         title: new Text("Contacts"),
       ),
@@ -43,7 +52,7 @@ class HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget> [ 
                         new FlatButton(
-                          onPressed: () => {},
+                          onPressed: () {buttonClick(mydata[index]["item"]);},
                           child: new ConstrainedBox(
                             constraints: new BoxConstraints.tightFor(),
                             child: Row(children: <Widget>[
@@ -64,5 +73,6 @@ class HomePageState extends State<HomePage> {
         )
       )
     );
+    
   }
 }
